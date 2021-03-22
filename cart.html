@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        #cart{
+            margin-top: 100px;
+        }
+
+        .text-center{
+            padding: 20px;
+
+            text-align: center;
+        }
+        img{
+            width: 75px;
+        }
+    </style>
+    <title>Din varukorg - Sara's webbshop</title>
+</head>
+<body class = "container">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand" href="#"><img src="logga.png" alt="logga" class="rounded-circle"></a>
+       
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Våra produkter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">Din varukorg</a>
+          </li>
+        </ul>
+      </nav>
+
+    <div id="cart" class="row">
+        <div class="col-lg-4">
+            <table class="table table-align-middle w-auto text-center" style="padding: 8px 20px;">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Bild</th>
+                    <th scope="col">Namn</th>
+                    <th scope="col">á</th>
+                    <th scope="col">Antal</th>
+                    <th scope="col" style="margin: 30px;">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Markhdshghgjjhj</td>
+                    <td>Otto</td>
+                    <td id="price">300</td>
+                    <td id="qty">3</td>
+                    <td id="total">100</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>300</td>
+                    <td>3</td>
+                    <td id="total">100</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>300</td>
+                    <td>3</td>
+                    <td id="total">100</td>
+                  </tr>
+                  <tfoot>
+                    <th scope="row">Total</th>
+                    <td id="totalTotal" colspan="5" style="text-align: right;"> 27362546</td>
+                  </tfoot>
+                </tbody>
+              </table>
+        </div>
+    
+        <div class= "container col-lg-6" style="max-width: 700px; float: left;" >
+            <div class="row border bg-light ">
+                <div class="p-2 col-sm-6">
+                    <div><label for="firstName" class="form-label">Förnamn</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Förnamn"></div>
+                </div>
+                <div class="p-2 col-sm-6">
+                    <div><label for="lastName" class="form-label">Efternamn</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Efternamn"></div>
+                </div>
+                <div class="p-2 col-sm-6">
+                    <div><label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" placeholder="E-mail"></div>
+                </div>
+                <div class="p-2 col-sm-6">
+                    <div><label for="phone" class="form-label">Telefon</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Telefon"></div>
+                </div>
+                <div class="p-2 col-sm-12">
+                    <div><label for="street" class="form-label">Adress</label>
+                        <input type="text" class="form-control" id="street" placeholder="Adress"></div>
+                </div>
+                <div class="p-2 col-sm-6">
+                    <div><label for="zipCode" class="form-label">Postnummer</label>
+                    <input type="text" class="form-control" id="zipCode" placeholder="Postnummer"></div>
+                </div>
+                <div class="p-2 col-sm-6">
+                    <div><label for="com" class="form-label">Ort</label>
+                        <input type="text" class="form-control" id="com" placeholder="Ort"></div>
+                </div>
+                
+            </div>
+                <div style="margin: 20px; padding: 10; display: table; margin: 20px auto;"> 
+                    <button type="button" class="btn btn-outline-dark" id="finnishBtn">Skapa order</button>
+                </div>
+
+            </div>
+       
+        
+    </div>
+</body>
+</html>

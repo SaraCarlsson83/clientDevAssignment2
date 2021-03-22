@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Våra artiklar - Sara's webbshop</title>
+    <style>
+
+        #products{
+            margin-top: 100px;
+        }
+
+        .col{
+            width: 250px;
+            margin: 20px 10px;
+        }
+        img{
+            width: 75px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand" href="#"><img src="logga.png" alt="logga" class="rounded-circle"></a>
+
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Våra produkter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">Din varukorg</a>
+          </li>
+        </ul>
+      </nav>
+      
+
+    <div id="products" class= "container" >
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" id="addItems" style="padding: 20px;">
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"></script>
+
+    <script>
+        function addItems(json) {
+
+            json.forEach(function(e){§
+                $("#addItems").append(
+                `<div  class=col text-center>
+                <div class=p-4 border bg-light>
+                    <img src=${e.} alt=Placeholder image>
+                    <button id=btn${btn} >Lägg i varukorgen</button>
+                </div>
+            </div>`)
+            })
+            
+        }
+
+        function load(){
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET","https://webacademy.se/fakestore/");
+            xhr.send();
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState===4 && xhr.status===200){
+                   addItems(JSON.parse(xhr.responseText))
+                }
+            }   
+        }
+        var size = 200;
+        let btn = 0;
+        for(i=0; i<10; i++){
+            $("#addItems").append(`
+            <div  class=col text-center>
+                <div class=p-4 border bg-light>
+                    <img src=https://picsum.photos/${size} alt=Placeholder image>
+                    <button id=btn${btn} >Lägg i varukorgen</button>
+                </div>
+            </div>`)
+            size++;
+        }
+
+        $(document).ready(function(){
+           
+        })
+
+    </script>
+</body>
+</html>
