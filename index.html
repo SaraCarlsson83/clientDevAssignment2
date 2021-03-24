@@ -12,13 +12,44 @@
             margin-top: 100px;
         }
 
-        .col{
+        #addItems{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /*.col{
             width: 250px;
             margin: 20px 10px;
-        }
+        }*/
         img{
             width: 75px;
         }
+        .pic{
+            width: 200px;
+        }
+        #itemCard{
+            width: 300px;
+            height:520px;
+        }
+
+        #p-height{
+            height: 100px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+        #p-height:hover{
+            overflow: visible;
+            height: 300px;
+            background-color:aqua;
+        }
+
+        #title{
+            height: 50px;
+        }
+
     </style>
 </head>
 <body>
@@ -37,7 +68,7 @@
       
 
     <div id="products" class= "container" >
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4" id="addItems" style="padding: 20px;">
+        <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-md-4" id="addItems" ;">
         </div>
         
     </div>
@@ -46,60 +77,60 @@
     crossorigin="anonymous"></script>
 
     <script>
-        let addItemdiv = document.getElementById("addItems");
-        load();
+        let addItemdiv = $("#addItems");
+        const itemFile = "https://webacademy.se/fakestore/";
+        let allItems = "";
+        let counter = 0;
 
+        $(document).ready(run)
+
+        $(document).on('click', '.addToCartBtn', saveInLocalStorage);
+
+        function run() {
+            $.getJSON(itemFile, function(response) {
+                addItems(response);
+                allItems = response;
+                sessionStorage.setItem("allItems", JSON.stringify(allItems));
+            })
+
+            counter = localStorage.getItem("counter") || 0;
+        }
+
+        function getAllItems(){
+            return JSON.parse(sessionStorage.getItem("allItems"))
+        }
+
+        function saveInLocalStorage() {
+            getAllItems().forEach((e) => {if(e.id==this.id){
+                localStorage.setItem(`id${++counter}`, JSON.stringify(e))
+                localStorage.setItem(`counter`, counter)
+                
+               // localStorage.setItem("cartItems",JSON.stringify(items));
+
+            }})
+            
+           // cartItems.push();
+
+            //localStorage.setItem("cartItems", JSON.stringify(items));
+        }
 
         function addItems(json) {
-            console.log(json);
+            console.log(typeof(json));
 
             let output = "";
             json.forEach((e)=>(output +=`
-                    <div  class=col text-center>
-                        <div class=p-4 border bg-dark>
-                            <img src=${e.image} alt=Placeholder image>
-                            <button id=btn >Lägg i varukorgen</button>
+                    <div  class="col text-center" >
+                        <div class="p-4 border border-2" id = "itemCard">
+                            <div id = "title"><h5 class="text-wrap">${e.title}</h5></div>
+                            <img src=${e.image} alt=Placeholder image class="m-3 pic">
+                            <h5> parseInt(${e.price}).tofixed(2)kr</h5>
+                            <p id = "p-height"> ${e.description}</p>
+                            <button type="button" class = "btn btn-outline-dark addToCartBtn" id = "${e.id}">Lägg i varukorgen</button>
                         </div>
                      </div>`));
 
-            addItemdiv.innerHTML = output;
-            
+            addItemdiv.html(output);
         }
-
-        /*`<div  class=col text-center>
-                    <div class=p-4 border bg-light>
-                        <img src=${e.image} alt=Placeholder image>
-                        <button id=btn >Lägg i varukorgen</button>
-                    </div>
-                </div>`
-                */
-
-        function load(){
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET","https://webacademy.se/fakestore/");
-            xhr.send();
-
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState===4 && xhr.status===200){
-                   addItems(JSON.parse(xhr.responseText))
-                }
-            }   
-        }
-
-        
-        /*var size = 200;
-        let btn = 0;
-        for(i=0; i<10; i++){
-            $("#addItems").append(`
-            <div  class=col text-center>
-                <div class=p-4 border bg-light>
-                    <img src=https://picsum.photos/${size} alt=Placeholder image>
-                    <button id=btn${btn} >Lägg i varukorgen</button>
-                </div>
-            </div>`)
-            size++;
-        }
-        */
 
     </script>
 </body>
