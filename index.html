@@ -46,23 +46,36 @@
     crossorigin="anonymous"></script>
 
     <script>
-        function addItems(json) {
+        let addItemdiv = document.getElementById("addItems");
+        load();
 
-            json.forEach(function(e){§
-                $("#addItems").append(
-                `<div  class=col text-center>
-                <div class=p-4 border bg-light>
-                    <img src=${e.} alt=Placeholder image>
-                    <button id=btn${btn} >Lägg i varukorgen</button>
-                </div>
-            </div>`)
-            })
+
+        function addItems(json) {
+            console.log(json);
+
+            let output = "";
+            json.forEach((e)=>(output +=`
+                    <div  class=col text-center>
+                        <div class=p-4 border bg-dark>
+                            <img src=${e.image} alt=Placeholder image>
+                            <button id=btn >Lägg i varukorgen</button>
+                        </div>
+                     </div>`));
+
+            addItemdiv.innerHTML = output;
             
         }
 
+        /*`<div  class=col text-center>
+                    <div class=p-4 border bg-light>
+                        <img src=${e.image} alt=Placeholder image>
+                        <button id=btn >Lägg i varukorgen</button>
+                    </div>
+                </div>`
+                */
+
         function load(){
             const xhr = new XMLHttpRequest();
-
             xhr.open("GET","https://webacademy.se/fakestore/");
             xhr.send();
 
@@ -72,7 +85,9 @@
                 }
             }   
         }
-        var size = 200;
+
+        
+        /*var size = 200;
         let btn = 0;
         for(i=0; i<10; i++){
             $("#addItems").append(`
@@ -84,10 +99,7 @@
             </div>`)
             size++;
         }
-
-        $(document).ready(function(){
-           
-        })
+        */
 
     </script>
 </body>
