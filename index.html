@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Våra artiklar - Sara's webbshop</title>
     <style>
 
@@ -18,36 +19,34 @@
             text-align: center;
         }
 
-        /*.col{
-            width: 250px;
-            margin: 20px 10px;
-        }*/
         img{
             width: 75px;
         }
         .pic{
-            width: 200px;
+            width: 150px;
         }
         #itemCard{
-            width: 300px;
-            height:520px;
+            width: 250px;
+            height:450px;
         }
 
         #p-height{
-            height: 100px;
+            height: 75px;
             overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
+            display: -webkit-inline-box;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
-        }
-        #p-height:hover{
-            overflow: visible;
-            height: 300px;
-            background-color:aqua;
+
         }
 
         #title{
             height: 50px;
+        }
+
+        .tooltip{
+            max-width: 200px;
+            background-color:black;
+            color: white;
         }
 
     </style>
@@ -56,7 +55,7 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <a class="navbar-brand" href="#"><img src="logga.png" alt="logga" class="rounded-circle"></a>
 
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav me-auto" >
           <li class="nav-item">
             <a class="nav-link" href="index.html">Våra produkter</a>
           </li>
@@ -73,6 +72,16 @@
         
     </div>
 
+    <div>
+        <footer > 
+          <hr>
+          <p class="p-footer">
+              Copyright &copy; 2021 - Sara's  webbshop
+          </p> 
+      </footer>
+      </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
     crossorigin="anonymous"></script>
 
@@ -86,33 +95,75 @@
 
         $(document).on('click', '.addToCartBtn', saveInLocalStorage);
 
+
         function run() {
             $.getJSON(itemFile, function(response) {
                 addItems(response);
                 allItems = response;
                 sessionStorage.setItem("allItems", JSON.stringify(allItems));
             })
-
-            counter = localStorage.getItem("counter") || 0;
+  
+            counter = localStorage.getItem("counter") || 0; 
         }
 
-        function getAllItems(){
+        function getAllItems(){ 
             return JSON.parse(sessionStorage.getItem("allItems"))
         }
 
-        function saveInLocalStorage() {
-            getAllItems().forEach((e) => {if(e.id==this.id){
-                localStorage.setItem(`id${++counter}`, JSON.stringify(e))
-                localStorage.setItem(`counter`, counter)
-                
-               // localStorage.setItem("cartItems",JSON.stringify(items));
-
-            }})
-            
-           // cartItems.push();
-
-            //localStorage.setItem("cartItems", JSON.stringify(items));
+        function getProduct(btnId){ 
+            let product = "";
+            getAllItems().forEach((e)=> {
+                if(e.id=== btnId){
+                    product = e;
+                    
+                }
+            })
+            return product;
         }
+
+        function saveInLocalStorage() {
+            let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+            console.log(cartItems)
+            getAllItems().forEach((e) => {if(e.id==this.id){
+                if(cartItems===null){
+                    
+                    cartItems=[];
+                    cartItems.push({
+                    "id": e.id,
+                    "title": e.title,
+                    "price": e.price,
+                    "image": e.image,
+                    "qty": 1
+                    });
+                }
+                else{   
+
+                    let isFound = false;
+                    cartItems.forEach((f)=> {
+                        if(f.id==e.id){
+                            f.qty +=1;
+                            isFound = true;
+                        }
+                    })
+
+                    if(!isFound){
+                        cartItems.push({
+                            "id": e.id,
+                            "title": e.title,
+                            "price": e.price,
+                            "image": e.image,
+                            "qty": 1
+                            });
+                    }
+                        
+            }}})
+                console.log("ur if-satsen")
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            //localStorage.setItem(`id${++counter}`, JSON.stringify(e))
+            localStorage.setItem(`counter`, counter)
+        }
+            
+        
 
         function addItems(json) {
             console.log(typeof(json));
@@ -120,11 +171,11 @@
             let output = "";
             json.forEach((e)=>(output +=`
                     <div  class="col text-center" >
-                        <div class="p-4 border border-2" id = "itemCard">
+                        <div class="p-3 border border-2" id = "itemCard">
                             <div id = "title"><h5 class="text-wrap">${e.title}</h5></div>
                             <img src=${e.image} alt=Placeholder image class="m-3 pic">
-                            <h5> parseInt(${e.price}).tofixed(2)kr</h5>
-                            <p id = "p-height"> ${e.description}</p>
+                            <h5> ${e.price}kr</h5>
+                            <p id = "p-height" data-toggle="tooltip" title = "${e.description}"> ${e.description}</p>
                             <button type="button" class = "btn btn-outline-dark addToCartBtn" id = "${e.id}">Lägg i varukorgen</button>
                         </div>
                      </div>`));
