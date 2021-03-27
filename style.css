@@ -13,3 +13,87 @@
 footer{
     width: 100%;    
 }
+
+#cart1{
+    margin: 30px;
+    margin-top: 100px;
+}
+
+.text-center{
+    padding: 20px;
+
+    text-align: center;
+}
+.logga{
+    width: 75px;
+}
+
+.pic{
+  width: 50px;
+}
+
+#add-remove{
+  display:flex;
+  border-bottom: 0;
+}
+.btn{
+  padding: auto;
+  margin: 10px;
+}
+th{
+  vertical-align: middle;
+}
+td{
+  vertical-align: middle;
+}
+
+.invalidText{
+  color:red
+}
+
+#order-done-text{
+    text-align: center;
+    margin-top:250px;
+    font-size: 4vw;
+}
+
+#products{
+    margin-top: 100px;
+}
+
+#addItems{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+img{
+    width: 75px;
+}
+.item-card-pic{
+    width: 150px;
+}
+#itemCard{
+    width: 250px;
+    height:450px;
+}
+
+#p-height{
+    height: 75px;
+    overflow: hidden;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow-wrap: break-word;
+
+}
+
+#title{
+    height: 50px;
+}
+
+.tooltip{
+    max-width: 200px;
+    background-color:black;
+    color: white;
+}
