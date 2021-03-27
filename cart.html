@@ -5,25 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="bootstrap.css">
-    <style>
-        #cart{
-            margin-top: 100px;
-        }
-
-        .text-center{
-            padding: 20px;
-
-            text-align: center;
-        }
-        img{
-            width: 75px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <title>Din varukorg - Sara's webbshop</title>
 </head>
-<body class = "container">
+<body id="page">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="#"><img src="logga.png" alt="logga" class="rounded-circle"></a>
+        <a class="navbar-brand " href="index.html" ><img src="logga.png" alt="logga" class="rounded-circle logga"></a>
        
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
@@ -35,7 +22,7 @@
         </ul>
       </nav>
 
-    <div id="cart" class="row">
+    <div id="cart1" class="row">
         <div class="col-lg-4">
             <table class="table table-align-middle w-auto text-center" style="padding: 8px 20px;">
                 <thead>
@@ -48,77 +35,74 @@
                     <th scope="col" style="margin: 30px;">Total</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Markhdshghgjjhj</td>
-                    <td>Otto</td>
-                    <td id="price">300</td>
-                    <td id="qty">3</td>
-                    <td id="total">100</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>300</td>
-                    <td>3</td>
-                    <td id="total">100</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>300</td>
-                    <td>3</td>
-                    <td id="total">100</td>
-                  </tr>
-                  <tfoot>
-                    <th scope="row">Total</th>
-                    <td id="totalTotal" colspan="5" style="text-align: right;"> 27362546</td>
-                  </tfoot>
+                <tbody id="cart">
                 </tbody>
+                <tfoot>
+                  <th scope="row">Total</th>
+                  <td id="totalTotal" colspan="5" style="text-align: right;"> 0</td>
+                </tfoot>
               </table>
         </div>
     
-        <div class= "container col-lg-6" style="max-width: 700px; float: left;" >
-            <div class="row border bg-light ">
+        <div class= "container col-lg-6" style="max-width: 700px; float: left;" id="infoForm" >
+            <div class="row border bg-light">
                 <div class="p-2 col-sm-6">
                     <div><label for="firstName" class="form-label">Förnamn</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="Förnamn"></div>
+                    <input type="text" class="form-control" id="firstName" placeholder="Förnamn" required></div>
+                    <div><label for="firstaname" class="form-label invalidText" id="invalidFname" class = "invalid"></label></div>
                 </div>
                 <div class="p-2 col-sm-6">
                     <div><label for="lastName" class="form-label">Efternamn</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Efternamn"></div>
+                        <input type="text" class="form-control" id="lastName" placeholder="Efternamn" required></div>
+                        <div><label for="lastName" class="form-label invalidText" id="invalidLname" class = "invalid"></label></div>
                 </div>
                 <div class="p-2 col-sm-6">
                     <div><label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="E-mail"></div>
+                    <input type="email" class="form-control" id="email" placeholder="E-mail" required></div>
+                    <div><label for="email" class="form-label invalidText" id="invalidEmail" class = "invalid"></label></div>
                 </div>
                 <div class="p-2 col-sm-6">
-                    <div><label for="phone" class="form-label">Telefon</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="Telefon"></div>
+                    <div><label for="phone" class="form-label is-invalid">Telefon</label>
+                        <input  type="tel" class="form-control" id="phone" placeholder="Telefon" required></div>
+                        <div><label for="phone" class="form-label invalidText" id="invalidPhone" class = "invalid"></label></div>
                 </div>
                 <div class="p-2 col-sm-12">
                     <div><label for="street" class="form-label">Adress</label>
-                        <input type="text" class="form-control" id="street" placeholder="Adress"></div>
+                        <input  type="text" class="form-control" id="street" placeholder="Adress" required></div>
+                        <div><label for="street" class="form-label invalidText" id="invalidAdress" class = "invalid"></label></div>
                 </div>
                 <div class="p-2 col-sm-6">
                     <div><label for="zipCode" class="form-label">Postnummer</label>
-                    <input type="text" class="form-control" id="zipCode" placeholder="Postnummer"></div>
+                    <input  type="text" class="form-control" id="zipCode" placeholder="Postnummer" required></div>
+                    <div><label for="zipCode" class="form-label invalidText" id="invalidZip" class = "invalid"></label></div>
                 </div>
                 <div class="p-2 col-sm-6">
                     <div><label for="com" class="form-label">Ort</label>
-                        <input type="text" class="form-control" id="com" placeholder="Ort"></div>
+                        <input type="text" class="form-control" id="com" placeholder="Ort" required ></div>
+                        <div><label for="com" class="form-label invalidText" id="invalidCom" class = "invalid"></label></div>
                 </div>
                 
-            </div>
+              </div>
                 <div style="margin: 20px; padding: 10; display: table; margin: 20px auto;"> 
-                    <button type="button" class="btn btn-outline-dark" id="finnishBtn">Skapa order</button>
+                    <input type="submit" value="Skicka order"class="btn btn-outline-dark" id="finnishBtn"></input>
                 </div>
-
             </div>
-       
-        
+            
     </div>
+
+    <div>
+      <footer class="footer-bottom" > 
+        <hr>
+        <p class="p-footer">
+            Copyright &copy; 2021 - Sara's webbshop
+        </p> 
+    </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"></script>
+
+    <script src="cart.js"></script>
+    
 </body>
 </html>
