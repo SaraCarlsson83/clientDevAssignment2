@@ -19,6 +19,10 @@ let products = [];
         if(products!=null){
 
           products.forEach((e)  => {
+              let price = e.price;
+              let qty = e.qty;
+              let totalPrice = price*qty;
+              totalSum += totalPrice;
             output = 
             `<tr>
               <th scope="row" class="tableclass">${counter}</th>
@@ -26,22 +30,16 @@ let products = [];
                 <img src=${e.image} class = "pic" alt = Placeholder image class="m-3 pic">
               </td>
               <td class="title">${e.title}</td>
-              <td id="price${counter}">${e.price}</td>
-              <td id="add-remove">
-                  <button type="button" class="btn btn-outline-dark add1btn" style = "padding: 0 4px" >-</button>
-                  <div id="qty${counter}">${e.qty}</div>
-                  <button type="button" class="btn btn-outline-dark add1btn" style = "padding: 0 4px">+</button>
-              </td>
-              <td id="total${counter}"></td>
+              <td>${price.toFixed(2)}kr</td>
+              <td><button type="button" class="btn btn-outline-dark add1btn" style = "padding: 0 4px" >-</button></td>
+              <td id = "qty">${qty}</td>
+              <td><button type="button" class="btn btn-outline-dark add1btn" style = "padding: 0 4px" >+</button></td>
+              <td >${totalPrice.toFixed(2)}kr</td>
             </tr>`
 
             $("#cart").append(output);
+            counter++
 
-            let sum = $(`#price${counter}`).text()* $(`#qty${counter}`).text();
-            totalSum += sum;
-            $(`#total${counter}`).append(sum.toFixed(2) + "kr");
-
-            counter++;
           })
           $("#totalTotal").text(totalSum.toFixed(2)+"kr");
         }
@@ -60,7 +58,7 @@ let products = [];
       }
 
       function addRemoveItem(){
-        let temp = parseInt($(this).siblings("div").html());
+        let temp = parseInt($(this).parent().siblings("#qty").html());
         let title = $(this).parent().siblings(".title").html();
         let item = findItem(title);
         
@@ -69,11 +67,6 @@ let products = [];
         }
         else if($(this).text()=="+"){
           item.qty += 1;
-        }
-        else{
-          products.array.forEach(element => {
-            
-          });
         }
         
         localStorage.setItem("cartItems", JSON.stringify(products));
